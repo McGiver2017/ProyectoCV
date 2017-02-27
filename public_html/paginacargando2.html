@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/vendor/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            html, body {
+                font-family: sans-serif;
+                font-size: 12pt;
+            }
+
+            .modal-loading {
+                display: none;
+            }
+
+            body.loading .modal-loading {
+                display: block;
+            }
+
+            body.loading .modal-loading .capa-negra {
+                background: #222222;
+                z-index: 10000;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+
+            body.loading .modal-loading .capa-negra h1 {
+                color: #fff;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+            }
+
+            body.loading .modal-loading .capa-negra .brand {
+                background: url('texto_prueba.png') no-repeat;
+                width: 300px;
+                height: 68px;
+                position: absolute;
+                top: 40%;
+                left: 40%;
+                z-index: 10003;
+            }
+
+            body.loading .modal-loading .capa-negra .capa-blanca {
+                background: #fff;
+                width: 0px; /*Parámetro a modificar, máximo: 300px*/
+                height: 68px;
+                position: absolute;
+                top: 40%;
+                left: 40%;
+                z-index: 10002;
+            }
+
+            body.loading .modal-loading .capa-negra .capa-roja {
+                background: red;
+                width: 300px;
+                height: 68px;
+                position: absolute;
+                top: 40%;
+                left: 40%;
+                z-index: 10001;
+            }
+
+            section {
+                background: url('http://lorempixel.com/1800/800');
+                color: #fff;
+                width: 100%;
+                height: 100vh;
+            }
+
+            section h1 {
+                position: absolute;
+                top: 40%;
+                left: 36%;
+                font-size: 2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="modal-loading">
+            <div class="capa-negra">
+                <div class="brand"></div>
+                <div class="capa-blanca"></div>
+                <div class="capa-roja"></div>
+                <h1>0%</h1>
+            </div>
+        </div>
+
+        <section>
+            <h1>Página web de ejemplo</h1>
+        </section>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="jquery.DEPreLoad.js"></script>
+
+        <script>
+            $('body').addClass('loading');
+            $('body.loading .modal-loading .capa-negra h1').empty().append('0%');
+
+            $(document).ready(function () {
+                var loader = $("body").DEPreLoad({
+                    OnStep: function (percent) {
+                        var val = (percent * 300) / 100;
+                        $('body.loading .modal-loading .capa-negra .capa-blanca').animate({width: val + 'px'}, 1000, function () {
+                            $('body.loading .modal-loading .capa-negra h1').empty().append(percent + '%');
+                        });
+                    },
+                    OnComplete: function () {
+                        $('.modal-loading').fadeOut(300, function () {
+                            $('body').removeClass('loading');
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
