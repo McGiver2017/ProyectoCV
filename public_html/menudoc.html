@@ -4,26 +4,36 @@
         <meta charset="utf-8">
         <meta name="robots" content="noindex">
 
-        <title>Fancy Sidebar Navigation - Bootsnipp.com</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/main.css" rel="stylesheet" type="text/css"/>        
+        <title>Elija una opcion</title>
+        <!--General  -->
+        <link href="https://fonts.googleapis.com/css?family=Baloo|Cabin" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.min.css">         
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">        
         <script src="js/vendor/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
-        <!--DATATABLE--> 
 
+        <!--General  -->
+
+        <!--DATATABLE--> 
+        <link href="media/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
         <script src="media/js/jquery.dataTables.min.js" type="text/javascript"></script>        
         <script src="media/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 
-
+        <script src="media/js/dataTables.responsive.min.js" type="text/javascript"></script>
         <!--/DATATABLE--> 
-        <link href="css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="css/general.css" rel="stylesheet" type="text/css"/> 
+        <link href="css/oncarga.css" rel="stylesheet" type="text/css"/>
+        <script src="js/oncarga.js" type="text/javascript"></script>     
 
-        <script src="js/opcdoc.js" type="text/javascript"></script>
+        <link href="css/menuvapers.css" rel="stylesheet" type="text/css"/>      
+        <script src="js/menuvapers.js" type="text/javascript"></script>
 
+        <script src="js/menudoc.js" type="text/javascript"></script>
+        <link href="css/menudoc.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tablarespons.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body >  
+    <body> 
+
         <div class="container">
             <center>
                 <div id="preloader_1">
@@ -51,37 +61,40 @@
                                 return false">Registrar Docentes</a>
                     </li>
                     <li>
-                        <a href="#" onclick="datos_personales(); return false" >Datos Personales</a>
+                        <a href="#" onclick="datos_personales();
+                                return false" >Datos Personales</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Formación Académica y Profesional<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Referente al docente</li>
-                            <li><a href="#" onclick="actualizarcv();  return false">Formación Academica</a></li>
-                            <li><a href="#">Actualizaciones y/o capacitaciones</a></li>
-                            <li><a href="#">Idiomas</a></li>
+                            <li><a href="#" onclick="grados();  return false">Grado Academico</a></li>
+                            <li><a href="#" onclick="titulo_prof();  return false">Titulo Profesional</a></li>
+                            <li><a href="#" onclick="otros_estudios();  return false">Otros Estudios</a></li>
+                            <li><a href="#" onclick="actualizaciones();  return false">Actualizaciones y/o capacitaciones</a></li>
+                            <li><a href="#" onclick="idiomas();  return false">Idiomas</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Experiencia Académica y Profesional<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Referente al docente</li>
-                            <li><a href="#">Experiencia en Docencia</a></li>
-                            <li><a href="#">Experiencia Laboral</a></li>
+                            <li><a href="#" onclick="experiencia_laboral();  return false">Experiencia en Docencia</a></li>
+                            <li><a href="#" onclick="experiencia_laboral2();  return false">Experiencia Laboral</a></li>
                         </ul>
                     </li>
 
 
                     <li>
-                        <a href="#">Participacion como Ponente y expositor</a>
+                        <a href="#" onclick="participacion_ponencia();  return false">Participacion como Ponente y expositor</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Producción Científica y Humanística (Trabajos de Investigación)<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Referente al docente</li>
-                            <li><a href="#">Tipo de Trabajo</a></li>
-                            <li><a href="#">Publicaciones Científicas o Tecnológicas</a></li>
-                            <li><a href="#">Experiencia en Asesoría de  Tesis</a></li>
+                            <li><a href="#" onclick="Trabajos_Investigación();  return false">Tipo de Trabajo</a></li>
+                            <li><a href="#" onclick="Publicaciones_cientificas();  return false">Publicaciones Científicas o Tecnológicas</a></li>
+                            <li><a href="#" onclick="Asesoria_tesis();  return false">Experiencia en Asesoría de  Tesis</a></li>
                         </ul>
                     </li>
                     <li>
@@ -99,330 +112,1338 @@
                     <span class="hamb-middle"></span>
                     <span class="hamb-bottom"></span>
                 </button>
-                <div class="container row" id="campo">
-
-                    <div class="container  col-sm-10" id="registrardoc">
-                        <div class="panel panel-default">               
-                            <div class="panel panel-body">
-                                <form id="formulario"  method="post">
-
-                                    <h2 class="text-center">Registrar Docentes</h2>
-                                    <br>           
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Apellidos" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Nombres" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                                        <input type="date" class="form-control" id="inputEmail3" placeholder="Fecha de Nacimiento" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="DNI" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Direccion" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Distrito" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Urbanizacion" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Provincia" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Departamento" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
-                                        <input type="number" maxlength="9" class="form-control" id="inputEmail3" placeholder="Teléfono fijo" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></div>
-                                        <input type="number" maxlength="9" class="form-control" id="inputEmail3" placeholder="Teléfono Móvil" required>
-
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
-
-                                    </div>                        
-
-                                    <div class="row">  
-                                        <div class="row col-sm-12">                            
-                                            <center><button type="submit" class="btn btn-default " data-dismiss="modal" >Guardar</button></center>                       
-                                        </div>
-                                    </div> 
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="container  col-sm-10" id="mostrardoc">
-                        <div class="panel panel-default">
-                            <div class="panel panel-body">
-                                <table id="example" class="table table-striped table-bordered dt-responsive nowrap " cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo</th>
-                                            <th>Nombres</th>
-                                            <th>A Paterno</th>
-                                            <th>A Materno</th>
-                                            <th>Edad</th>
-                                            <th>Telefono</th>
-                                            <th>Nacimiento</th>
-                                            <th>Cargo</th>
-                                            <th>Mantenimiento</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Codigo</th>
-                                            <th>Nombres</th>
-                                            <th>A Paterno</th>
-                                            <th>A Materno</th>
-                                            <th>Edad</th>
-                                            <th>Telefono</th>
-                                            <th>Nacimiento</th>
-                                            <th>Cargo</th>
-                                            <th>Mantenimiento</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>71450637</td>
-                                            <td>Bryan</td>
-                                            <td>Avila</td>
-                                            <td>Portocarrero</td>
-                                            <td>21</td>
-                                            <td>959651779</td>
-                                            <td>2017-09-05</td>
-                                            <td>Administrador</td>
-                                            <td><center><button onclick="editartabla(this)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                                        <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
-                                    </tr>
-                                    <tr>
-                                        <td>71450637</td>
-                                        <td>Jorge Luis</td>
-                                        <td>Melendez</td>
-                                        <td>Torres</td>
-                                        <td>21</td>
-                                        <td>959651779</td>
-                                        <td>1995-06-02</td>
-                                        <td>Administrador</td>
-                                        <td><center><button onclick="editartabla(3)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                                        <button onclick="eliminar()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
-                                    </tr>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /#page-content-wrapper -->
-
-            </div>
-            <!-- /#wrapper -->
-            <div class="container col-sm-10" id="datos_personales">
-                <div class="panel panel-default text-center text-info">
-                    <div class="panel panel-body" id="mostrar">
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-6">
-                                <h1><label class="label-primary">Datos Personales</label> </h1>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Apellidos:</label></h3>
-                                    <h3 id="edpapellido"><label class="col-sm-7 text-left"  id="dpapellido">Avila Portocarrero</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Nombres:</label></h3>
-                                    <h3 id="edpnombre"><label class="col-sm-7 text-left" id="dpnombre">Bryan Mc Giver</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Fecha de Nacimiento:</label></h3>
-                                    <h3 id="edpfech"><label class="col-sm-7 text-left"  id="dpfech">1995-05-09</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Nacionalidad:</label></h3>
-                                    <h3 id="edpnac"><label class="col-sm-7 text-left" id="dpnac">Peruana</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Dirección:</label></h3>
-                                    <h3 id="edpdir"><label class="col-sm-7 text-left" id="dpdir">Urbanización Municipal Manzana D4 Lote 13</label></h3>
-
-                                </div> 
-
-                            </div>
-                            <div class="col-sm-6">
-                                <h1><label class="label-primary">Foto de Perfil</label></h1>
-                                <br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxWm1vpBuG1UT7Jfz5hXnesog_EK9nHcDaw_f5YPJjAybFwAC7"/>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Distrito:</label></h3>
-                                    <h3 id="edpdistr"><label class="col-sm-7 text-left" id="dpdistr">Calleria</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Urbanizacion:</label></h3>
-                                    <h3 id="edpurb"><label class="col-sm-7 text-left" id="dpurb">Ninguna</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Provincia:</label></h3>
-                                    <h3 id="edpprov"><label class="col-sm-7 text-left" id="dpprov">Coronel Portillo</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Departamento: </label></h3>
-                                    <h3 id="edpdepart"><label class="col-sm-7 text-left" id="dpdepart">Ucayali</label></h3>
-
-                                </div>
-
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Teléfono Fijo:</label></h3>
-                                    <h3 id="edptelf"><label class="col-sm-7 text-left" id="dptelf">0615487</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Teléfono Movil:</label></h3>
-                                    <h3 id="edptelfm"><label class="col-sm-7 text-left" id="dptelfm">920210374</label></h3>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Correo Electronico:</label></h3>
-                                    <h3 id="edpemail"><label class="col-sm-7 text-left" id="dpemail">mxcgiver12@gmail.com</label></h3>
-
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body" id="editar">
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-6">
-                                <h1><label class="label-primary">Datos Personales Modificar</label> </h1>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Apellidos:</label></h3>
-                                    <div class="col-sm-7" ><input type="text" class="form-control" id="mpapellido" placeholder="Apellidos" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Nombres:</label></h3>
-                                    <div class="col-sm-7" ><input type="text" class="form-control" id="mpnombre" placeholder="Nombres" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Fecha de Nacimiento:</label></h3>
-                                    <div class="col-sm-7" ><input type="date" class="form-control" id="mpfech" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Nacionalidad:</label></h3>
-                                    <div class="col-sm-7" ><input type="text" class="form-control " id="mdpnac" placeholder="Nacionalidad" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Dirección:</label></h3>
-                                    <div class="col-sm-7" ><textarea class="form-control" id="mdpdir" placeholder="Direccion" required></textarea></div>
-
-                                </div> 
-
-                            </div>
-                            <div class="col-sm-6">
-                                <h1><label class="label-primary">Foto de Perfil</label></h1>
-                                <br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxWm1vpBuG1UT7Jfz5hXnesog_EK9nHcDaw_f5YPJjAybFwAC7"/>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Distrito:</label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdpdistr" placeholder="Distrito" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Urbanizacion:</label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdpurb" placeholder="Urbanizacion" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Provincia:</label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdpprov" placeholder="Provincia" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Departamento: </label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdpdepart" placeholder="Departamento" required></div>
-
-                                </div>
-
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Teléfono Fijo:</label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdptelf" placeholder="Teléfono Fijo" required></div>
-
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Teléfono Movil:</label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdptelfm" placeholder="Teléfono Movil" required></div>
-                                </div>
-                                <div class="control-label row">                            
-                                    <h3><label class="col-sm-5  label-primary text-right">Correo Electronico:</label></h3>
-                                    <div class="col-sm-7"><input type="text" class="form-control" id="mdpemail" placeholder="Teléfono Movil" required></div>
-
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-footer">
-                        <div class="col-sm-6">
-                        </div>
-                        <div class="col-sm-6">
-                            <button class="btn btn-primary text-left" disabled id="guardar">Guardar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
-                            <button class="btn btn-primary text-left" id="modificar" >Modificar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-                            <button class="btn btn-primary text-left" disabled id="cancelar">Cancelar <span class="glyphicon glyphicon-share" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        
+            </div>  
         </div>
+        <div class="container row" id="campo">
+            <div class="container  col-sm-10 bordes" id="registrardoc">
+                <div class="panel panel-default">               
+                    <div class="panel panel-body">
+                        <form id="formulario"  method="post">
+
+                            <h2 class="text-center">Registrar Docentes</h2>
+                            <br>           
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Apellidos" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Nombres" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                                <input type="date" class="form-control" id="inputEmail3" placeholder="Fecha de Nacimiento" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="DNI" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Direccion" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Distrito" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Urbanizacion" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Provincia" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Departamento" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
+                                <input type="number" maxlength="9" class="form-control" id="inputEmail3" placeholder="Teléfono fijo" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></div>
+                                <input type="number" maxlength="9" class="form-control" id="inputEmail3" placeholder="Teléfono Móvil" required>
+
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
+
+                            </div>                        
+
+                            <div class="row">  
+                                <div class="row col-sm-12">                            
+                                    <center><button type="submit" class="btn btn-default " data-dismiss="modal" >Guardar</button></center>                       
+                                </div>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- /.mostrargrado academico -->
+            <div class="container  col-sm-10 bordes" id="mostrargradac">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Grado Academico</h1>
+                        <table id="o1grado_ac" class="table table-responsive table-bordered  dt-responsive fontsize" cellspacing="0" >
+                            <thead>
+                                <tr>
+                                    <th>Grado Académico</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Situacion</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Grado Académico</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Situacion</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Licenciado</td>
+                                    <td>Ingeníeria Electrónica</td>
+                                    <td>2017-02-22</td>
+                                    <td>Universidad Ricardo Palma</td>
+                                    <td>T</td>   
+                                    <td><center><button onclick="e1editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+                            <tr>
+                                <td>Doctor</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>   
+                                <td><center><button onclick="e1editar(3)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a1agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.fmostrargrado academico -->
+
+            <!-- /.mostrar titulo profesional -->
+            <div class="container  col-sm-10 bordes" id="mostrartituloprof">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Titulo Profesional</h1>
+                        <table id="o2titulo_prof" class="table table-responsive table-bordered  dt-responsive fontsize" cellspacing="0" >
+                            <thead>
+                                <tr>
+                                    <th>Titulo Profesional</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Situacion</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Titulo Profesional</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Situacion</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Bachiller</td>
+                                    <td>Ingeníeria Electrónica</td>
+                                    <td>2017-02-22</td>
+                                    <td>Universidad Ricardo Palma</td>
+                                    <td>T</td>   
+                                    <td><center><button onclick="e2editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+                            <tr>
+                                <td>Doctor</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>   
+                                <td><center><button onclick="e2editar(3)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a2agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.fmostrar titulo profesional -->
+
+            <!-- /.mostrar otros estudios -->
+            <div class="container  col-sm-10 bordes" id="mostrarotrosestudios">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Otros estudios</h1>
+                        <table id="o3otros_estudios" class="table table-responsive table-bordered  dt-responsive fontsize" cellspacing="0" >
+                            <thead>
+                                <tr>
+                                    <th>Otros Estudios</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Situacion</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Otros Estudios</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Situacion</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Bachiller</td>
+                                    <td>Ingeníeria Electrónica</td>
+                                    <td>2017-02-22</td>
+                                    <td>Universidad Ricardo Palma</td>
+                                    <td>T</td>   
+                                    <td><center><button onclick="e3editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+                            <tr>
+                                <td>Doctor</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>   
+                                <td><center><button onclick="e3editar(3)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a3agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.fmostrar otros estudios -->
+            <!-- /.mostrar Actualizaciones -->
+            <div class="container  col-sm-10 bordes" id="mostraractualizaciones">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Actualizaciones y/o Capacitaciones</h1>
+                        <table id="o4actualizaciones" class="table table-responsive table-bordered  dt-responsive fontsize" cellspacing="0" >
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>  
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Total de Horas</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Tipo</th>  
+                                    <th>Centro de Estudio / Pais</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha Desde/ Hasta(Mes/Año)</th>
+                                    <th>Total de Horas</th>                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Diplomado</td>
+                                    <td>Universidad Hispana</td>
+                                    <td>Diseño, construcción de redes y telecomunicaciones</td>
+                                    <td>2017-02-22</td>                                    
+                                    <td></td>   
+                                    <td><center><button onclick="e4editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+                            <tr>
+                                <td>Diplomado</td>
+                                <td>Universidad nacional intercultural de la amazonia</td>
+                                <td>Gestión de la automatización en el sub sector electricidad </td>
+                                <td>2017-02-22</td>
+                                <td>48</td>   
+                                <td><center><button onclick="e4editar(3)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a4agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.fmostrar Actualizaciones -->
+            <!-- /.mostrar Iomas -->
+            <div class="container  col-sm-10 bordes" id="mostraridiomas">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Idiomas</h1>
+                        <table id="o5idiomas" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Idioma</th>  
+                                    <th>Lee</th>
+                                    <th>Escribe</th>
+                                    <th>Habla</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Idioma</th>  
+                                    <th>Lee</th>
+                                    <th>Escribe</th>
+                                    <th>Habla</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Ingles</td>
+                                    <td>Intermedio</td>
+                                    <td>Intermedio</td>
+                                    <td>Intermedio</td> 
+                                    <td><center><button onclick="e5editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a5agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.fmostrar Idiomas -->
+            <!-- /.mostrar Experiencia Docencia -->
+            <div class="container  col-sm-10 bordes" id="mostrarexplab">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Experiencia en Docencia</h1>
+                        <table id="o6explab" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre de la Universidad / Instituto</th>  
+                                    <th>Facultad</th>
+                                    <th>Asignatura dictadas</th>
+                                    <th>Fecha Desde / Hasta (Mes/Año)</th>                                                                  
+                                    <th>Experiencia en años</th>
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre de la Universidad / Instituto</th>  
+                                    <th>Facultad</th>
+                                    <th>Asignatura dictadas</th>
+                                    <th>Fecha Desde / Hasta (Mes/Año)</th>                                                                  
+                                    <th>Experiencia en años</th>
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>UNIVERSIDAD NACIONAL DE UCAYALI</td>
+                                    <td>INGENIERIA DE SISTEMAS Y DE INGENIERIA CIVIL</td>
+                                    <td>FISICA II
+                                        FISICA I
+                                        SISTEMAS DIGITALES
+                                        MICROCONTROLADORES
+                                    </td>
+                                    <td>05/04/2001</td> 
+                                    <td>15  </td> 
+                                    <td><center><button onclick="e6editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a6agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>      
+            <!-- /.fmostrar Experiencia docencia -->
+
+            <!-- /.mostrar Experiencia Laboral -->
+            <div class="container  col-sm-10 bordes" id="mostrarexplab2">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Experiencia Laboral </h1><h3>(Institución en la que Trabajo y/o Trabaja Actualmente)</h3>
+                        <table id="o7explab2" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre de la Empresa</th>  
+                                    <th>Cargo / Área</th>
+                                    <th>Fecha Desde / Hasta (Mes/Año)</th>
+                                    <th>Tiempo en el Cargo (Años/Meses)</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre de la Empresa</th>  
+                                    <th>Cargo / Área</th>
+                                    <th>Fecha Desde / Hasta (Mes/Año)</th>
+                                    <th>Tiempo en el Cargo (Años/Meses)</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Registros públicos- zona Pucallpa</td>
+                                    <td>Gerente de informática </td>
+                                    <td>01/01/1998 al 30/12/1998</td>
+                                    <td>1 año</td> 
+                                    <td><center><button onclick="e7editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a7agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>      
+            <!-- /.fmostrar Experiencia Laboral -->            
+
+
+            <!-- /Participación como Ponente o Expositor -->
+            <div class="container  col-sm-10 bordes" id="mostrarpart_pon">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Participacion en Ponencias </h1>
+                        <table id="o8ponencia" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Congresos, Seminarios, Coloquios, etc </th>  
+                                    <th>Entidad Organizadora</th>
+                                    <th>Fecha</th>                                                                                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Congresos, Seminarios, Coloquios, etc </th>  
+                                    <th>Entidad Organizadora</th>
+                                    <th>Fecha</th>                                                                                                    
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Coneisc</td>
+                                    <td>Universidad Nacional De Ucayali</td>
+                                    <td>05/08/2015</td>                                     
+                                    <td><center><button onclick="e8editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a8agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>      
+            <!-- /.Participación como Ponente o Expositor -->
+
+            <!-- /.mostrar Experiencia Laboral -->
+            <div class="container  col-sm-10 bordes" id="mostrarTipoInvst">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Trabajos de Investigación</h1>
+                        <table id="o9investig" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>  
+                                    <th>Titulo</th>
+                                    <th>Breve Descripción</th>
+                                    <th>Nivel de Participación</th>                                                                  
+                                    <th>Fecha (Mes / Año)</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Tipo</th>  
+                                    <th>Titulo</th>
+                                    <th>Breve Descripción</th>
+                                    <th>Nivel de Participación</th>                                                                  
+                                    <th>Fecha (Mes / Año)</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>tipo1</td>
+                                    <td>tipo1</td>
+                                    <td>tipo1</td>
+                                    <td>tipo1</td>
+                                    <td>2017-02-12</td>   
+                                    <td><center><button onclick="e9editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a9agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>      
+            <!-- /.fmostrar Experiencia Laboral -->
+
+            <!-- /.mostrar Publicaciones Científicas o Tecnológicas -->
+            <div class="container  col-sm-10 bordes" id="mostrarpublcien">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Publicaciones Científicas o Tecnológicas </h1>
+                        <table id="o10publcien" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>  
+                                    <th>Titulo</th>
+                                    <th>Fecha de Publicación</th>
+                                    <th>Procedencia</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Tipo</th>  
+                                    <th>Titulo</th>
+                                    <th>Fecha de Publicación</th>
+                                    <th>Procedencia</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Registros públicos- zona Pucallpa</td>
+                                    <td>Gerente de informática </td>
+                                    <td>2016-02-11</td>
+                                    <td>algo</td> 
+                                    <td><center><button onclick="e10editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a10agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>      
+            <!-- /.fmostrar Publicaciones Científicas o Tecnológicas -->
+
+            <!-- /.mostrar Experiencia Laboral -->
+            <div class="container  col-sm-10 bordes" id="mostrarastesis">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <h1>Experiencia en Asesoría de  Tesis</h1>
+                        <table id="o11astesis" class="table table-responsive table-bordered dt-responsive fontsize" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Resolución de Asesor</th>  
+                                    <th>Nombre del Asesorado</th>
+                                    <th>Título de la Tesis</th>
+                                    <th>Resolución de Aprobación de Tesis</th>                                                                  
+                                    <th>Grado Académico</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Resolución de Asesor</th>  
+                                    <th>Nombre del Asesorado</th>
+                                    <th>Título de la Tesis</th>
+                                    <th>Resolución de Aprobación de Tesis</th>                                                                  
+                                    <th>Grado Académico</th>                                                                  
+                                    <th>Mantenimiento</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>alsa</td>
+                                    <td>asf </td>
+                                    <td>asf</td>
+                                    <td>afs</td> 
+                                    <td>afs</td> 
+                                    <td><center><button onclick="e11editar(2)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                <button onclick="eliminar(2)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></center></td>
+                            </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary text-left" onclick="a11agregar()"  id="agregar">Agregar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+
+                    </div>
+
+                </div>
+            </div>      
+            <!-- /.fmostrar Experiencia Laboral -->
+
+
+
+
+
+            <!-- /.modal-->
+            <!-- /.Op1 grado-->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a1agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Grado Academico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a11grado_academico" placeholder="Grado Academico">
+                            <input required type="text" class="form-control" id="a12especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="a13fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">
+                            <input required type="text" class="form-control" id="a14estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="a15sistuacion" placeholder="Situacion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg1" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e1editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Grado Academico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type="text" class="form-control" id="e11grado_academico" placeholder="Grado Academico">
+                            <input required type="text" class="form-control" id="e12especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="e13fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">
+                            <input required type="text" class="form-control" id="e14estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="e15sistuacion" placeholder="Situacion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e1actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   grado-->
+
+            <!-- /.Op2 titulo profesional-->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a2agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Grado Academico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a21titulo_prof" placeholder="Titulo Profesional">
+                            <input required type="text" class="form-control" id="a22especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="a23fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">
+                            <input required type="text" class="form-control" id="a24estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="a25sistuacion" placeholder="Situacion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg2" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e2editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Grado Academico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type="text" class="form-control" id="e21titulo_prof" placeholder="Titulo Profesional">
+                            <input required type="text" class="form-control" id="e22especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="e23fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">
+                            <input required type="text" class="form-control" id="e24estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="e25sistuacion" placeholder="Situacion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e2actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>           
+            <!-- /.Op2 titulo profesional-->
+
+            <!-- /.fOp1   Otros estudios-->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a3agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Grado Academico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a31otros" placeholder="Otros estudios">
+                            <input required type="text" class="form-control" id="a32especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="a33fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">
+                            <input required type="text" class="form-control" id="a34estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="a35sistuacion" placeholder="Situacion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg3" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e3editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Grado Academico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type="text" class="form-control" id="e31otros" placeholder="Otros estudios">
+                            <input required type="text" class="form-control" id="e32especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="e33fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">
+                            <input required type="text" class="form-control" id="e34estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="e35sistuacion" placeholder="Situacion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e3actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Otros estudios-->
+            <!-- /.fOp1   Actualizaciones-->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a4agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Actualizaciones y/o Capacitaciones</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a41tipo" placeholder="Tipo">
+                            <input required type="text" class="form-control" id="a42estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="a43especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="a44fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">                        
+                            <input required type="text" class="form-control" id="a45sistuacion" placeholder="Total de horas">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg4" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e4editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Actualizaciones y/o Capacitaciones</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="e41tipo" placeholder="Tipo">
+                            <input required type="text" class="form-control" id="e42estudios" placeholder="Centro de Estudios/Pais">
+                            <input required type="text" class="form-control" id="e43especialidad" placeholder="Especialidad">
+                            <input required type="date" class="form-control" id="e44fecha" placeholder="Fecha Desde/Hasta (Mes/Año)">                        
+                            <input required type="text" class="form-control" id="e45sistuacion" placeholder="Total de horas">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e4actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Actualizaciones-->
+
+            <!-- /.fOp1   Idiomas-->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a5agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Idiomas</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a51idioma" placeholder="Idioma">
+                            <input required type="text" class="form-control" id="a52lee" placeholder="Lee">
+                            <input required type="text" class="form-control" id="a53escribe" placeholder="Escribe">
+                            <input required type="text" class="form-control" id="a54habla" placeholder="Habla">   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg5" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e5editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Idiomas</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="e51idioma" placeholder="Idioma">
+                            <input required type="text" class="form-control" id="e52lee" placeholder="Lee">
+                            <input required type="text" class="form-control" id="e53escribe" placeholder="Escribe">
+                            <input required type="text" class="form-control" id="e54habla" placeholder="Habla">  
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e5actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Idiomas-->
+
+            <!-- /.fOp1   Experiencia en Docencia-->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a6agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Experiencia en Docencia</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a61universidad" placeholder="Nombre de la Universidad / Instituto">
+                            <input required type="text" class="form-control" id="a62facultad" placeholder="Facultad">
+                            <input required type="text" class="form-control" id="a63asigantura" placeholder="Asignatura dictadas">
+                            <input required type="text" class="form-control" id="a64fecha" placeholder="Fecha desde">   
+                            <input required type="text" class="form-control" id="a65experiencia" placeholder="Experiencia">   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg6" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e6editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Experiencia en Docencia</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="e61universidad" placeholder="Nombre de la Universidad / Instituto">
+                            <input required type="text" class="form-control" id="e62facultad" placeholder="Facultad">
+                            <input required type="text" class="form-control" id="e63asigantura" placeholder="Asignatura dictadas">
+                            <input required type="text" class="form-control" id="e64fecha" placeholder="Fecha desde">   
+                            <input required type="text" class="form-control" id="e65experiencia" placeholder="Experiencia">   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e6actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Experiencia en Docencia-->
+
+            <!-- /.fOp1   Experiencia Laboral -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a7agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Experiencia Laboral</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a71empresa" placeholder="Nombre de la Empresa">
+                            <input required type="text" class="form-control" id="a72cargo" placeholder="Cargo / Área">
+                            <input required type="text" class="form-control" id="a73fecha" placeholder="Fecha desde">
+                            <input required type="text" class="form-control" id="a74tiempo" placeholder="Tiempo en el cargo (Años/Meses)">   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg7" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e7editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Experiencia Laboral</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="e71empresa" placeholder="Nombre de la Empresa">
+                            <input required type="text" class="form-control" id="e72cargo" placeholder="Cargo / Área">
+                            <input required type="text" class="form-control" id="e73fecha" placeholder="Fecha desde">
+                            <input required type="text" class="form-control" id="e74tiempo" placeholder="Tiempo en el cargo (Años/Meses)">    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e7actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Experiencia Laboral -->
+            <!-- /.fOp1   Participacion en Ponencias -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a8agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Participación como Ponente o Expositor</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a81lugar" placeholder="Congresos, Seminarios, Coloquios, etc ">
+                            <input required type="text" class="form-control" id="a82enitdad" placeholder="Entidad Organizadora">
+                            <input required type="date" class="form-control" id="a83fecha" placeholder="Fecha">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg8" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e8editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Experiencia Laboral</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="e81lugar" placeholder="Congresos, Seminarios, Coloquios, etc ">
+                            <input required type="text" class="form-control" id="e82enitdad" placeholder="Entidad Organizadora">
+                            <input required type="date" class="form-control" id="e83fecha" placeholder="Fecha">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e8actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Participacion en Ponencias -->
+
+            <!-- /.fOp1   Producción Científica y Humanística (Trabajos de Investigación) -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a9agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Producción Científica y Humanística (Trabajos de Investigación)</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a91tipo" placeholder="Tipo">
+                            <input required type="text" class="form-control" id="a92titulo" placeholder="Titulo">
+                            <input required type="text" class="form-control" id="a93brevedesc" placeholder="Breve Descripción">
+                            <input required type="text" class="form-control" id="a94Participacion" placeholder="Nivel de participacion">
+                            <input required type="date" class="form-control" id="a95fecha" placeholder="Fecha (Mes / Año)">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg9" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e9editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Experiencia Laboral</h4>
+                        </div>
+                        <div class="modal-body">
+                           <input required type=text class="form-control" id="e91tipo" placeholder="Tipo">
+                            <input required type="text" class="form-control" id="e92titulo" placeholder="Titulo">
+                            <input required type="text" class="form-control" id="e93brevedesc" placeholder="Breve Descripción">
+                            <input required type="text" class="form-control" id="e94Participacion" placeholder="Nivel de participacion">
+                            <input required type="date" class="form-control" id="e95fecha" placeholder="Fecha (Mes / Año)">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e9actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Producción Científica y Humanística (Trabajos de Investigación) -->
+
+            <!-- /.fOp1   Producción Científica y Humanística (Trabajos de Investigación) -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a10agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Publicaciones Científicas o Tecnológicas</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a101tipo" placeholder="Tipo">
+                            <input required type="text" class="form-control" id="a102titulo" placeholder="Titulo">                            
+                            <input required type="date" class="form-control" id="a103fecha" placeholder="Fecha (Mes / Año)">
+                            <input required type="text" class="form-control" id="a104precedencia" placeholder="Precedencia">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg10" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e10editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Publicaciones Científicas o Tecnológicas</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="e101tipo" placeholder="Tipo">
+                            <input required type="text" class="form-control" id="e102titulo" placeholder="Titulo">                            
+                            <input required type="date" class="form-control" id="e103fecha" placeholder="Fecha (Mes / Año)">
+                            <input required type="text" class="form-control" id="e104precedencia" placeholder="Precedencia">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e10actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Producción Científica y Humanística (Trabajos de Investigación) -->
+
+            <!-- /.fOp1   Producción Científica y Humanística (Trabajos de Investigación) -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="a11agregar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Agregar Experiencia en Asesoría de  Tesis</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input required type=text class="form-control" id="a111resolucion" placeholder="Resolución de Asesor">
+                            <input required type="text" class="form-control" id="a112asesor" placeholder="Nombre del Asesorado">                            
+                            <input required type="text" class="form-control" id="a113titulo" placeholder="Título de la Tesis">
+                            <input required type="text" class="form-control" id="a114universidad" placeholder="Universidad">
+                            <input required type="text" class="form-control" id="a115resolucion" placeholder="Resolución de Aprobación de Tesis">
+                            <input required type="text" class="form-control" id="a116gradoaacd" placeholder="Grado Académico">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="bg11" >Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>   
+            <!-- divisor -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="e11editar">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Editar Experiencia en Asesoría de  Tesis</h4>
+                        </div>
+                        <div class="modal-body">
+                          <input required type=text class="form-control" id="e111resolucion" placeholder="Resolución de Asesor">
+                            <input required type="text" class="form-control" id="e112asesor" placeholder="Nombre del Asesorado">                            
+                            <input required type="text" class="form-control" id="e113titulo" placeholder="Título de la Tesis">
+                            <input required type="text" class="form-control" id="e114universidad" placeholder="Universidad">
+                            <input required type="text" class="form-control" id="e115resolucion" placeholder="Resolución de Aprobación de Tesis">
+                            <input required type="text" class="form-control" id="e116gradoaacd" placeholder="Grado Académico">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="e11actualizar()">Guardar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.fOp1   Producción Científica y Humanística (Trabajos de Investigación) -->
+
+
+            <!-- /#wrapper -->
+
+            <div class="container col-sm-10 bordes" id="datos_personales">
+                <div class="panel panel-default text-center text-info">
+                    <div class="panel panel-body">
+                        <div class="" id="mostrar">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <h1><label class="label-primary">Datos Personales</label> </h1>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Apellidos:</label></h4>
+                                        <h4 id="edpapellido"><label class="col-sm-7 text-left"  id="dpapellido">Avila Portocarrero</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Nombres:</label></h4>
+                                        <h4 id="edpnombre"><label class="col-sm-7 text-left" id="dpnombre">Bryan Mc Giver</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Fecha de Nacimiento:</label></h4>
+                                        <h4 id="edpfech"><label class="col-sm-7 text-left"  id="dpfech">1995-05-09</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Nacionalidad:</label></h4>
+                                        <h4 id="edpnac"><label class="col-sm-7 text-left" id="dpnac">Peruana</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Dirección:</label></h4>
+                                        <h4 id="edpdir"><label class="col-sm-7 text-left" id="dpdir">Urbanización Municipal Manzana D4 Lote 13</label></h4>
+
+                                    </div> 
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <h1><label class="label-primary">Foto de Perfil</label></h1>
+                                    <br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxWm1vpBuG1UT7Jfz5hXnesog_EK9nHcDaw_f5YPJjAybFwAC7"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Distrito:</label></h4>
+                                        <h4 id="edpdistr"><label class="col-sm-7 text-left" id="dpdistr">Calleria</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Urbanizacion:</label></h4>
+                                        <h4 id="edpurb"><label class="col-sm-7 text-left" id="dpurb">Ninguna</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Provincia:</label></h4>
+                                        <h4 id="edpprov"><label class="col-sm-7 text-left" id="dpprov">Coronel Portillo</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Departamento: </label></h4>
+                                        <h4 id="edpdepart"><label class="col-sm-7 text-left" id="dpdepart">Ucayali</label></h4>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Teléfono Fijo:</label></h4>
+                                        <h4 id="edptelf"><label class="col-sm-7 text-left" id="dptelf">0615487</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Teléfono Movil:</label></h4>
+                                        <h4 id="edptelfm"><label class="col-sm-7 text-left" id="dptelfm">920210374</label></h4>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Correo Electronico:</label></h4>
+                                        <h4 id="edpemail"><label class="col-sm-7 text-left" id="dpemail">mxcgiver12@gmail.com</label></h4>
+
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" id="editar">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <h1><label class="label-primary">Datos Personales Modificar</label> </h1>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Apellidos:</label></h4>
+                                        <div class="col-sm-7" ><input type="text" class="form-control" id="mpapellido" placeholder="Apellidos" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Nombres:</label></h4>
+                                        <div class="col-sm-7" ><input type="text" class="form-control" id="mpnombre" placeholder="Nombres" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Fecha de Nacimiento:</label></h4>
+                                        <div class="col-sm-7" ><input type="date" class="form-control" id="mpfech" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Nacionalidad:</label></h4>
+                                        <div class="col-sm-7" ><input type="text" class="form-control " id="mdpnac" placeholder="Nacionalidad" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Dirección:</label></h4>
+                                        <div class="col-sm-7" ><textarea class="form-control" id="mdpdir" placeholder="Direccion" required></textarea></div>
+
+                                    </div> 
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <h1><label class="label-primary">Foto de Perfil</label></h1>
+                                    <br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxWm1vpBuG1UT7Jfz5hXnesog_EK9nHcDaw_f5YPJjAybFwAC7"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Distrito:</label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdpdistr" placeholder="Distrito" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Urbanizacion:</label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdpurb" placeholder="Urbanizacion" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Provincia:</label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdpprov" placeholder="Provincia" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Departamento: </label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdpdepart" placeholder="Departamento" required></div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Teléfono Fijo:</label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdptelf" placeholder="Teléfono Fijo" required></div>
+
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Teléfono Movil:</label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdptelfm" placeholder="Teléfono Movil" required></div>
+                                    </div>
+                                    <div class="control-label row">                            
+                                        <h4><label class="col-sm-5  label-primary text-right">Correo Electronico:</label></h4>
+                                        <div class="col-sm-7"><input type="text" class="form-control" id="mdpemail" placeholder="Teléfono Movil" required></div>
+
+                                    </div> 
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel panel-footer row">
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="btn btn-primary text-left" disabled id="guardar">Guardar <span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+                                <button class="btn btn-primary text-left" id="modificar" >Modificar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                <button class="btn btn-primary text-left" disabled id="cancelar">Cancelar <span class="glyphicon glyphicon-share" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </body>
 </html>

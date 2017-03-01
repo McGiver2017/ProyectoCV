@@ -1,0 +1,16 @@
+.bordes{
+
+    margin-left: 20% !important; 
+    margin-top: 0% !important; 
+
+}
+
+
+
+table th{
+    background:#ccc;padding:5px;text-align:center;
+}
+table tr{
+    border-bottom:1px solid #ccc;padding:5px;text-align:center
+}
+

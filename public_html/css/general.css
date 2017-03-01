@@ -1,0 +1,41 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+table{
+    border: black;
+    /* Para navegadores que soportan RGBa mostramos el color sólido con un 50% de opacidad */
+    background: rgba(0, 0, 0, 0.3);
+    background: white!important;
+    color: black !important;
+}
+body {
+    position: relative;
+    overflow-x: hidden;
+    font-family: 'Cabin', sans-serif;
+    background-image: url(../img/tecnologia_ordenador_futuro_teclados_1600x1200.jpg);
+}
+.panel{
+     border: black;
+    background: rgb(0, 0, 0);
+    /* Para navegadores que soportan RGBa mostramos el color sólido con un 50% de opacidad */
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding-top: 1.5%;
+    background: rgb(0, 0, 0);
+    /* Para navegadores que soportan RGBa mostramos el color sólido con un 50% de opacidad */
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 24px 24px 24px 24px;
+    -moz-border-radius: 24px 24px 24px 24px;
+    -webkit-border-radius: 24px 24px 24px 24px;
+    border: 0px solid #000000;
+    -webkit-box-shadow: 10px 10px 39px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 39px 8px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 39px 8px rgba(0,0,0,0.75);
+}
+
+/*-------------------------------*/
+/*           Wrappers            */
+/*-------------------------------*/
+
